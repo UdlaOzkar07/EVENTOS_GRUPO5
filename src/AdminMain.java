@@ -46,19 +46,21 @@ public class AdminMain extends JFrame{
     private JLabel lblCorreo_U;
     private JLabel lblLogoInicio;
     private JPanel jpLogoInicion;
-    private JButton REGISTRAREVENTOButton;
+    private JButton CREAREVENTOButton;
     private JButton CANCELAREVENTOButton;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
+    private JButton VEREVENTOSButton;
+    private JButton ASIGNARSALAButton;
+    private JButton ASIGNARORADORButton;
+    private JButton REGISTRARASISTENTEButton1;
     private JButton btnSalir;
     private UsuarioMngt usuarios;
+    private SalaMngt salas;
 
     public AdminMain(UsuarioMngt usuarios) {
         this.usuarios = usuarios;
         initializeJFrame();
         initializeJTableUsuario();
+        initializeJTableSala();
         btnEliminarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,6 +115,36 @@ public class AdminMain extends JFrame{
 
         jtUsuarios.setModel(usuarioModel);
     }
+
+    private void initializeJTableSala(){
+        try {
+            salas = new SalaMngt();
+            salas.agregarSala(new Sala("001",50,"Proyector, Control, Computador","Planta Baja",true));
+            salas.agregarSala(new Sala("002",100,"Proyector, Control, Computador","Segundo Piso",false));
+
+            DefaultTableModel  salaModel = new DefaultTableModel();
+
+            salaModel.addColumn("Id. Sala");
+            salaModel.addColumn("Capacidad");
+            salaModel.addColumn("Equipamiento");
+            salaModel.addColumn("Ubicacion");
+            salaModel.addColumn("Disponible");
+
+            salaModel.setRowCount(0);
+
+            for (Sala s : salas.listarSalas()) {
+                salaModel.addRow(new Object[]{s.getIdSala(),s.getCapacidad(),s.getEquipamiento(),s.getUbicacion(),s.isDispoble()});
+            }
+
+            jtSalas.setModel(salaModel);
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+
+    }
+
     private void initializeJFrame(){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
