@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login {
+public class Login extends JFrame{
     private JPanel Login;
     private JTextField txtUsuario_L;
     private JTextField txtContrasena_L;
@@ -14,10 +14,9 @@ public class Login {
     private JPanel jpField_L;
     private JLabel lblUsuario_L;
     private JLabel lblContrasena_L;
+    private UsuarioMngt usuarios;
 
-    private UsuarioList usuarios;
-
-    public Login(UsuarioList usuarios) {
+    public Login(UsuarioMngt usuarios) {
         this.usuarios = usuarios;
         initializeJFrame();
         btnInciarSesion_L.addActionListener(new ActionListener() {
@@ -27,7 +26,12 @@ public class Login {
                 String contrasenia = txtContrasena_L.getText();
                 try {
                     if (usuarios.verificarCredenciales(idUsario, contrasenia)) {
-                        JOptionPane.showMessageDialog(null,"Bienvenidos!!");
+                        dispose();
+                        if (usuarios.getUsuarioActual().getRol() == "Administrador") {
+                            AdminMain adminapp = new AdminMain(usuarios);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Bienvenido Invitado!!");
+                        }
                     }
                 }catch (Exception ex){
                     JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -38,27 +42,15 @@ public class Login {
 
     private void initializeJFrame(){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        JFrame frame = new JFrame("Login");
-        frame.setContentPane(Login);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700,400);
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x,y);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }
 
-    /*public static void main(String[] args) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        JFrame frame = new JFrame("Login");
-        frame.setContentPane(new Login().Login);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(700,400);
-        int x = (screenSize.width - frame.getWidth()) / 2;
-        int y = (screenSize.height - frame.getHeight()) / 2;
-        frame.setLocation(x,y);
-        frame.setResizable(false);
-        frame.setVisible(true);
-    }*/
+        setTitle("Login");
+        setContentPane(Login);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700,400);
+        int x = (screenSize.width - getWidth()) / 2;
+        int y = (screenSize.height - getHeight()) / 2;
+        setLocation(x,y);
+        setResizable(false);
+        setVisible(true);
+    }
 }
