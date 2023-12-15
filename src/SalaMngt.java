@@ -6,6 +6,9 @@ public class SalaMngt {
 
     public SalaMngt() {
         this.salas = new ArrayList<Sala>();
+
+        salas.add(new Sala("001",50,"Proyector, Control, Computador","Planta Baja",true));
+        salas.add(new Sala("002",100,"Proyector, Control, Computador","Segundo Piso",false));
     }
 
     public void agregarSala(Sala sala) throws Exception{

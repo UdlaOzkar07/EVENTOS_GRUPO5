@@ -1,6 +1,6 @@
 import java.security.PrivateKey;
 
-public class Orador {
+public class Orador extends Usuario {
     private String cedula;
     private String nombre;
     private String apellido;
@@ -8,9 +8,9 @@ public class Orador {
     private String telefono;
     private String direccion;
     private String titulo;
-    private String idUsuario;
 
-    public Orador(String cedula, String nombre, String apellido, String correo, String telefono, String direccion, String titulo, String idUsuario) {
+    public Orador(String idUsuario,String contrasena, String cedula, String nombre, String apellido, String correo, String telefono, String direccion, String titulo) {
+        super(idUsuario,contrasena,nombre + " " + apellido,"Orador");
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,7 +18,6 @@ public class Orador {
         this.telefono = telefono;
         this.direccion = direccion;
         this.titulo = titulo;
-        this.idUsuario = idUsuario;
     }
 
     public String getCedula() {
@@ -77,14 +76,6 @@ public class Orador {
         this.titulo = titulo;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     @Override
     public String toString() {
         return "Orador{" +
@@ -95,7 +86,6 @@ public class Orador {
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", titulo='" + titulo + '\'' +
-                ", idUsuario='" + idUsuario + '\'' +
                 '}';
     }
 }

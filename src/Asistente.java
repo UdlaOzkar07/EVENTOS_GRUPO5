@@ -7,8 +7,8 @@ public class Asistente extends Usuario {
     private String telefono;
     private String direccion;
 
-    public Asistente(String idUsuario, String contrasena, String nombreCompleto, String rol, String cedula, String nombre, String apellido, Integer edad, String correo, String telefono, String direccion) {
-        super(idUsuario, contrasena, nombreCompleto, rol);
+    public Asistente(String idUsuario, String contrasena, String cedula, String nombre, String apellido, Integer edad, String correo, String telefono, String direccion) {
+        super(idUsuario, contrasena, nombre + " " + apellido , "Asistente");
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;

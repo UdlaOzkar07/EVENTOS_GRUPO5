@@ -6,9 +6,12 @@ public class AsistenteMngt {
 
     public AsistenteMngt() {
         this.asistentes = new ArrayList<Asistente>();
+
+        asistentes.add(new Asistente("jarteaga","jarteaga","1722631299"," Jahir","Arteaga",21,"jarteaga@hotmail.com","0984694655","Quito"));
+        asistentes.add(new Asistente("jsanchez","jsanchez","1722631289","José","Sánchez",32,"jsanchez@hotmail.com","0984694800","Quito"));
     }
 
-    public void agregarOrador(Asistente asistente) throws Exception{
+    public void agregarAsistente(Asistente asistente) throws Exception{
         if (!existeAsistente(asistente.getCedula()))
             asistentes.add(asistente);
         else

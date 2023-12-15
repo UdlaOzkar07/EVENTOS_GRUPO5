@@ -40,9 +40,9 @@ public class AdminMain extends JFrame{
     private JPanel jpUsuarioField;
     private JLabel lblLogoInicio;
     private JPanel jpLogoInicion;
-    private JButton CREAREVENTOButton;
-    private JButton CANCELAREVENTOButton;
-    private JButton VEREVENTOSButton;
+    private JButton REGISTRARORADORButton;
+    private JButton btnRegistrarAsistente;
+    private JButton REGISTRAREVENTOButton;
     private JButton ASIGNARSALAButton;
     private JButton ASIGNARORADORButton;
     private JButton REGISTRARASISTENTEButton1;
@@ -76,13 +76,19 @@ public class AdminMain extends JFrame{
     private JRadioButton rdDisponibilidad_S;
     private JRadioButton rbDisponibilidadN_S;
     private UsuarioMngt usuarios;
-    private SalaMngt salas;
+    private OradorMngt oradores = new OradorMngt();
+    private AsistenteMngt asistentes = new AsistenteMngt();
+    private SalaMngt salas = new SalaMngt();
+    private EventoMngt eventos = new EventoMngt();
 
     public AdminMain(UsuarioMngt usuarios) {
         this.usuarios = usuarios;
         initializeJFrame();
         initializeJTableUsuario();
+        initializeJTableOrador();
+        initializeJTableAsistente();
         initializeJTableSala();
+        initializeJTableEvento();
         btnEliminarUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -144,6 +150,31 @@ public class AdminMain extends JFrame{
                 }
             }
         });
+        btnRegistrarAsistente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    initializeJTableAsistente();
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        REGISTRARORADORButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+
+                    initializeJTableOrador();
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
     }
 
     private void initializeJTableUsuario(){
@@ -175,13 +206,63 @@ public class AdminMain extends JFrame{
         cbxRol_U.setSelectedIndex(0);
     }
 
-    private void initializeJTableSala(){
-        try {
-            salas = new SalaMngt();
-            salas.agregarSala(new Sala("001",50,"Proyector, Control, Computador","Planta Baja",true));
-            salas.agregarSala(new Sala("002",100,"Proyector, Control, Computador","Segundo Piso",false));
+    private void initializeJTableOrador(){
+        DefaultTableModel  oaradorModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
-            DefaultTableModel  salaModel = new DefaultTableModel();
+        oaradorModel.addColumn("Cedula");
+        oaradorModel.addColumn("Nombre");
+        oaradorModel.addColumn("Apellido");
+        oaradorModel.addColumn("Titulo profesional");
+        oaradorModel.addColumn("Correo");
+        oaradorModel.addColumn("Telefono");
+        oaradorModel.addColumn("Direccion");
+
+        oaradorModel.setRowCount(0);
+
+        for (Orador o : oradores.listarOradores()) {
+            oaradorModel.addRow(new Object[]{o.getCedula(),o.getNombre(),o.getApellido(),o.getTitulo(),o.getCorreo(),o.getTelefono(),o.getDireccion()});
+        }
+
+        jtOradores.setModel(oaradorModel);
+    }
+
+    private void initializeJTableAsistente(){
+        DefaultTableModel  asistenteModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        asistenteModel.addColumn("Cedula");
+        asistenteModel.addColumn("Nombre");
+        asistenteModel.addColumn("Apellido");
+        asistenteModel.addColumn("Edad");
+        asistenteModel.addColumn("Correo");
+        asistenteModel.addColumn("Telefono");
+        asistenteModel.addColumn("Direccion");
+
+        asistenteModel.setRowCount(0);
+
+        for (Asistente a : asistentes.listarAsistentes()) {
+            asistenteModel.addRow(new Object[]{a.getCedula(),a.getNombre(),a.getApellido(),a.getEdad(),a.getCorreo(),a.getTelefono(),a.getDireccion()});
+        }
+
+        jtAsistentes.setModel(asistenteModel);
+    }
+
+    private void initializeJTableSala(){
+            DefaultTableModel  salaModel = new DefaultTableModel(){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
 
             salaModel.addColumn("Id. Sala");
             salaModel.addColumn("Capacidad");
@@ -196,12 +277,33 @@ public class AdminMain extends JFrame{
             }
 
             jtSalas.setModel(salaModel);
-        }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null,ex.getMessage());
+    }
+
+    private void initializeJTableEvento(){
+        DefaultTableModel  eventoModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        eventoModel.addColumn("Id. Evento");
+        eventoModel.addColumn("Nombre del Evento");
+        eventoModel.addColumn("Descripcion del Evento");
+        eventoModel.addColumn("Tipo");
+        eventoModel.addColumn("Aforo permitido");
+        eventoModel.addColumn("Fecha evento");
+        eventoModel.addColumn("Hora Inicio");
+        eventoModel.addColumn("Hora Fin");
+        eventoModel.addColumn("Estado");
+
+        eventoModel.setRowCount(0);
+
+        for (Evento e : eventos.listarEventos()) {
+            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getHorainicio(),e.getHorafin(),e.getEstado()});
         }
 
+        jtEventos.setModel(eventoModel);
     }
 
     private void initializeJFrame(){
