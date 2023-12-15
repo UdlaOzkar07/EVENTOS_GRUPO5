@@ -1,4 +1,4 @@
-public class Asistente {
+public class Asistente extends Usuario {
     private String cedula;
     private String nombre;
     private String apellido;
@@ -6,9 +6,9 @@ public class Asistente {
     private String correo;
     private String telefono;
     private String direccion;
-    private String idUsuario;
 
-    public Asistente(String cedula, String nombre, String apellido, Integer edad, String correo, String telefono, String direccion, String idUsuario) {
+    public Asistente(String idUsuario, String contrasena, String nombreCompleto, String rol, String cedula, String nombre, String apellido, Integer edad, String correo, String telefono, String direccion) {
+        super(idUsuario, contrasena, nombreCompleto, rol);
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -16,7 +16,6 @@ public class Asistente {
         this.correo = correo;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.idUsuario = idUsuario;
     }
 
     public String getCedula() {
@@ -75,14 +74,6 @@ public class Asistente {
         this.direccion = direccion;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     @Override
     public String toString() {
         return "Asistente{" +
@@ -93,7 +84,6 @@ public class Asistente {
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", idUsuario='" + idUsuario + '\'' +
                 '}';
     }
 }

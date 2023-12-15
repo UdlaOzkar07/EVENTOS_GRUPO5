@@ -3,6 +3,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AdminMain extends JFrame{
     private JTabbedPane tpAdminApp;
@@ -27,7 +29,7 @@ public class AdminMain extends JFrame{
     private JScrollPane jspAsistentes;
     private JTable jtSalas;
     private JScrollPane jspSalas;
-    private JPanel jpSalesTable;
+    private JPanel jpSalasTable;
     private JPanel jpSalas;
     private JTable jtEventos;
     private JPanel jpEventos;
@@ -36,14 +38,6 @@ public class AdminMain extends JFrame{
     private JButton btnEliminarUsuario;
     private JButton btnModificarUsuario;
     private JPanel jpUsuarioField;
-    private JTextField txtIdUsuarui_U;
-    private JTextField txtNombre_U;
-    private JTextField txtApellido_U;
-    private JTextField txtCorreo_U;
-    private JLabel lblIdUsuario_U;
-    private JLabel lblNombre_U;
-    private JLabel lblApellido_U;
-    private JLabel lblCorreo_U;
     private JLabel lblLogoInicio;
     private JPanel jpLogoInicion;
     private JButton CREAREVENTOButton;
@@ -53,6 +47,34 @@ public class AdminMain extends JFrame{
     private JButton ASIGNARORADORButton;
     private JButton REGISTRARASISTENTEButton1;
     private JButton btnSalir;
+    private JPanel jpUsuarioFieldCol1;
+    private JTextField txtIdUsuario_U;
+    private JTextField txtContrasena_U;
+    private JTextField txtNombreCompleto_U;
+    private JComboBox cbxRol_U;
+    private JLabel lblIdUsuario_U;
+    private JLabel lblContrasena_U;
+    private JPanel jpUsuarioFieldCol2;
+    private JLabel lblNombreCompleto_U;
+    private JLabel lblRol_U;
+    private JButton btnGuardar_U;
+    private JPanel jpSalasFields;
+    private JButton btnAgregar_S;
+    private JButton btnModificar_S;
+    private JButton btnEliminar_S;
+    private JTextField txtIdSala_S;
+    private JTextField textField2;
+    private JPanel jpSalasColm1;
+    private JPanel jpSalasColm2;
+    private JLabel lblIdSala_S;
+    private JTextField txtEquipamiento_S;
+    private JLabel lblEquipamiento_S;
+    private JSpinner spCapacidad_S;
+    private JLabel lblCapacidad_S;
+    private JLabel lblUbicacion_S;
+    private JLabel lblDisponibilidad;
+    private JRadioButton rdDisponibilidad_S;
+    private JRadioButton rbDisponibilidadN_S;
     private UsuarioMngt usuarios;
     private SalaMngt salas;
 
@@ -83,9 +105,10 @@ public class AdminMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Usuario usuario = new Usuario(txtIdUsuarui_U.getText(),"","",txtNombre_U.getText(),txtApellido_U.getText(),txtCorreo_U.getText(),"");
+                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),cbxRol_U.getSelectedItem().toString());
                     usuarios.modificarUsuario(usuario);
                     initializeJTableUsuario();
+                    resetFieldUsuario();
                     JOptionPane.showMessageDialog(null,"Usuario modificado correctamente");
                 }
                 catch (Exception ex)
@@ -94,26 +117,62 @@ public class AdminMain extends JFrame{
                 }
             }
         });
+        btnGuardar_U.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),cbxRol_U.getSelectedItem().toString());
+                    usuarios.agregarUsuario(usuario);
+                    initializeJTableUsuario();
+                    resetFieldUsuario();
+                    JOptionPane.showMessageDialog(null,"Usuario creado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        jtUsuarios.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 2) {
+                    txtIdUsuario_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 0).toString());
+                    txtContrasena_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 1).toString());
+                    txtNombreCompleto_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 2).toString());
+                    cbxRol_U.setSelectedItem(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 3).toString());
+                }
+            }
+        });
     }
 
     private void initializeJTableUsuario(){
-        DefaultTableModel  usuarioModel = new DefaultTableModel();
+        DefaultTableModel  usuarioModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 
         usuarioModel.addColumn("Id. Usario");
         usuarioModel.addColumn("Contraseña");
+        usuarioModel.addColumn("Nombre completo");
         usuarioModel.addColumn("Rol");
-        usuarioModel.addColumn("Nombre");
-        usuarioModel.addColumn("Apellido");
-        usuarioModel.addColumn("Correo");
-        usuarioModel.addColumn("Preferencias");
 
         usuarioModel.setRowCount(0);
 
         for (Usuario u : usuarios.listarUsuarios()) {
-            usuarioModel.addRow(new Object[]{u.getId(),u.getContrasenia(),u.getRol(),u.getNombre(),u.getApellido(),u.getCorreo(),u.getPreferencias()});
+            usuarioModel.addRow(new Object[]{u.getIdUsuario(),u.getContrasena(),u.getNombreCompleto(),u.getRol()});
         }
 
         jtUsuarios.setModel(usuarioModel);
+    }
+    private void resetFieldUsuario()
+    {
+        txtIdUsuario_U.setText("");
+        txtNombreCompleto_U.setText("");
+        txtContrasena_U.setText("");
+        cbxRol_U.setSelectedIndex(0);
     }
 
     private void initializeJTableSala(){

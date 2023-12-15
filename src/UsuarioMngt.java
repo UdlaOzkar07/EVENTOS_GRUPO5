@@ -10,10 +10,16 @@ public class UsuarioMngt {
     }
 
     public void agregarUsuario(Usuario usuario) throws Exception{
-        if (!existeUsuario(usuario.getId()))
-        usuarios.add(usuario);
+        if(usuario.getIdUsuario().equals(""))
+            throw new Exception("El Id. Usuario debe tener un valor");
+
+        if(usuario.getContrasena().equals(""))
+            throw new Exception("La Contraseña debe tener un valor");
+
+        if (!existeUsuario(usuario.getIdUsuario()))
+            usuarios.add(usuario);
         else
-            throw new Exception("Ya se encuentra registrado un Usuario con id: " + usuario.getId());
+            throw new Exception("Ya se encuentra registrado un Usuario con id: " + usuario.getIdUsuario());
     }
 
     public void eliminarUsuario(String idUsuario) throws Exception{
@@ -21,7 +27,7 @@ public class UsuarioMngt {
             throw new Exception("No se puede eliminar al usuario admin");
 
         for (Usuario u : usuarios){
-            if (u.getId().equals(idUsuario)){
+            if (u.getIdUsuario().equals(idUsuario)){
                 usuarios.remove(u);
                 return;
             }
@@ -32,13 +38,13 @@ public class UsuarioMngt {
 
     public void modificarUsuario(Usuario usuario) throws Exception
     {
-        if (!existeUsuario(usuario.getId()))
-            throw new Exception("El usuario con id: "+ usuario.getId() + " no se encuentra registrado");
+        if (!existeUsuario(usuario.getIdUsuario()))
+            throw new Exception("El usuario con id: "+ usuario.getIdUsuario() + " no se encuentra registrado");
         for (Usuario u: usuarios) {
-            if (u.getId().equals(usuario.getId())){
-                u.setNombre(usuario.getNombre());
-                u.setApellido(usuario.getApellido());
-                u.setCorreo(usuario.getCorreo());
+            if (u.getIdUsuario().equals(usuario.getIdUsuario())){
+                u.setContrasena(usuario.getContrasena());
+                u.setNombreCompleto(usuario.getNombreCompleto());
+                u.setRol(usuario.getRol());
             }
         }
     }
@@ -46,7 +52,7 @@ public class UsuarioMngt {
     public boolean existeUsuario(String idUsuario)
     {
         for (Usuario u: usuarios) {
-            if (u.getId().equals(idUsuario))
+            if (u.getIdUsuario().equals(idUsuario))
                 return true;
         }
 
@@ -58,7 +64,7 @@ public class UsuarioMngt {
     }
     public  boolean verificarCredenciales(String idUsario, String contrasenia) throws Exception{
         for (Usuario u : usuarios) {
-            if (u.getId().equals(idUsario) && u.getContrasenia().equals(contrasenia)) {
+            if (u.getIdUsuario().equals(idUsario) && u.getContrasena().equals(contrasenia)) {
                 usuarioActual = u;
                 return true;
             }

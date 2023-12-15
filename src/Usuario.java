@@ -1,36 +1,38 @@
 public class Usuario {
-    private String idUsiario;
-    private String contrasenia;
+    private String idUsuario;
+    private String contrasena;
+    private String nombreCompleto;
     private String rol;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String preferencias;
 
-    public Usuario(String idUsiario, String contrasenia, String rol, String nombre, String apellido, String correo, String preferencias) {
-        this.idUsiario = idUsiario;
-        this.contrasenia = contrasenia;
+    public Usuario(String idUsuario, String contrasena, String nombreCompleto, String rol) {
+        this.idUsuario = idUsuario;
+        this.contrasena = contrasena;
+        this.nombreCompleto = nombreCompleto;
         this.rol = rol;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.preferencias = preferencias;
     }
 
-    public String getId() {
-        return idUsiario;
+    public String getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setId(String id) {
-        this.idUsiario = id;
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
+
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
     public String getRol() {
@@ -39,37 +41,5 @@ public class Usuario {
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getPreferencias() {
-        return preferencias;
-    }
-
-    public void setPreferencias(String preferencias) {
-        this.preferencias = preferencias;
     }
 }
