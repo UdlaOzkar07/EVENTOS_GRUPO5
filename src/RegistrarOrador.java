@@ -16,12 +16,12 @@ public class RegistrarOrador extends JFrame{
     private JTextField txtTelefono_O;
     private JLabel lblFecha_E;
     private JLabel lblHoraInicio_E;
-    private JTextField txtHoraInicio_E;
+    private JTextField txtDireccion_O;
     private JLabel lblHoraFin_E;
-    private JTextField txtHorafin_E;
+    private JTextField txtTitulo_O;
     private JTextField txtCorreo_O;
     private JButton btnCancelar_E;
-    private JButton btnRegistrar_E;
+    private JButton btnRegistrar_O;
     private JPanel RegistrarOrador;
 
     private OradorMngt orador;
