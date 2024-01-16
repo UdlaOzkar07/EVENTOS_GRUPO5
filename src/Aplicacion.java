@@ -7,7 +7,6 @@ public class Aplicacion {
             try {
                 UsuarioMngt usuarios = new UsuarioMngt();
                 usuarios.agregarUsuario(new Usuario("admin","admin","Adminitrador","Administrador"));
-                usuarios.agregarUsuario(new Usuario("orador","orador","Orador","Orador"));
                 Login login = new Login(usuarios);
             }
             catch (Exception ex){

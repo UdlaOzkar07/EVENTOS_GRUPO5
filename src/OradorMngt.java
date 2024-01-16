@@ -6,8 +6,8 @@ public class OradorMngt {
     public OradorMngt() {
         this.oradores = new ArrayList<Orador>();
 
-        oradores.add(new Orador("orodriguez","orodriguez","1722631296","Oscar","Rodriguez","Ing. Software","correo@hotmail.com","0984694855","Pomasqui"));
-        oradores.add(new Orador("jarauz","jarauz","1722631297","Juan","Arauz","Ing. Software","correo@prueba.com","0984694966","Tumbaco"));
+        oradores.add(new Orador("orodriguez","orodriguez","1722631296","Oscar","Rodriguez","correo@hotmail.com","0984694855","Pomasqui","Ing. Software"));
+        oradores.add(new Orador("jarauz","jarauz","1722631297","Juan","Arauz","correo@prueba.com","0984694966","Tumbaco","Ing. Software"));
     }
 
     public void agregarOrador(Orador orador) throws Exception{

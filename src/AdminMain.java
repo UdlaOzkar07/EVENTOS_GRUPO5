@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.sql.Time;
 
 public class AdminMain extends JFrame{
     private JTabbedPane tpAdminApp;
@@ -63,7 +65,7 @@ public class AdminMain extends JFrame{
     private JButton btnModificar_S;
     private JButton btnEliminar_S;
     private JTextField txtIdSala_S;
-    private JTextField textField2;
+    private JTextField txtUbicacion_S;
     private JPanel jpSalasColm1;
     private JPanel jpSalasColm2;
     private JLabel lblIdSala_S;
@@ -91,7 +93,7 @@ public class AdminMain extends JFrame{
     private JLabel lblCorreo_A;
     private JLabel lblTelefono_A;
     private JLabel lblDireccion_A;
-    private JButton btnEditar_E;
+    private JButton btnModificar_E;
     private JButton btnEliminar_E;
     private JTextField txtIdEvento_E;
     private JTextField txtNombre_E;
@@ -225,6 +227,186 @@ public class AdminMain extends JFrame{
                 {
                     JOptionPane.showMessageDialog(null,ex.getMessage());
                 }
+            }
+        });
+        btnModificar_O.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Orador orador = new Orador("","",txtCedula_O.getText(),txtNombre_O.getText(),txtApellido_O.getText(),txtCorreo_O.getText(),txtTelefono_O.getText(),txtDireccion_O.getText(),txtTituloPro_O.getText());
+                    oradores.modificarOrador(orador);
+                    initializeJTableOrador();
+                    JOptionPane.showMessageDialog(null,"Orador modificado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = jtOradores.getSelectedRow();
+                if (selectedRow != -1){
+                    try {
+                        oradores.eliminarOrador(jtOradores.getValueAt(selectedRow, 0).toString());
+                        initializeJTableOrador();
+                    }
+                    catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un orador");
+                }
+            }
+        });
+        btnModificar_A.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Asistente asistente = new Asistente("","",txtCedula_A.getText(),txtNombre_A.getText(),txtApellido_A.getText(),Integer.parseInt(spEdad.getValue().toString()),txtCorreo_A.getText(),txtTelefono_A.getText(),txtDireccion_A.getText());
+                    asistentes.modificarAsistente(asistente);
+                    initializeJTableAsistente();
+                    JOptionPane.showMessageDialog(null,"Asistente modificado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnEliminar_A.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = jtAsistentes.getSelectedRow();
+                if (selectedRow != -1){
+                    try {
+                        asistentes.eliminarAsistente(jtAsistentes.getValueAt(selectedRow, 0).toString());
+                        initializeJTableAsistente();
+                    }
+                    catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un asistente");
+                }
+            }
+        });
+        btnAgregar_S.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Sala sala = new Sala(txtIdSala_S.getText(),Integer.parseInt(spCapacidad_S.getValue().toString()),txtEquipamiento_S.getText(),txtUbicacion_S.getText(),true);
+                    salas.agregarSala(sala);
+                    initializeJTableSala();
+                    JOptionPane.showMessageDialog(null,"Sala creada correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnModificar_S.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Sala sala = new Sala(txtIdSala_S.getText(),Integer.parseInt(spCapacidad_S.getValue().toString()),txtEquipamiento_S.getText(),txtUbicacion_S.getText(),true);
+                    salas.modificarSala(sala);
+                    initializeJTableSala();
+                    JOptionPane.showMessageDialog(null,"Sala modificada correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnEliminar_S.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = jtSalas.getSelectedRow();
+                if (selectedRow != -1){
+                    try {
+                        salas.eliminarSala(jtSalas.getValueAt(selectedRow, 0).toString());
+                        initializeJTableSala();
+                    }
+                    catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione una sala");
+                }
+            }
+        });
+        btnModificar_E.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Evento evento = new Evento(txtIdEvento_E.getText(),txtNombre_A.getText(),txtDescripcion_E.getText(),cbxTipo_E.getSelectedItem().toString(), Date.valueOf(txtFecha_E.getText()), Time.valueOf(txtHoraInicio_E.getText()),Time.valueOf(txtHorafin_E.getText()),Integer.parseInt(spCapacidad_S.getValue().toString()),cbxEstado_E.getSelectedItem().toString());
+                    eventos.modificarEvento(evento);
+                    initializeJTableEvento();
+                    JOptionPane.showMessageDialog(null,"Evento modificado correctamente");
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
+            }
+        });
+        btnEliminar_E.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow = jtEventos.getSelectedRow();
+                if (selectedRow != -1){
+                    try {
+                        eventos.eliminarEvento(jtEventos.getValueAt(selectedRow, 0).toString());
+                        initializeJTableEvento();
+                    }
+                    catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un evento");
+                }
+            }
+        });
+        jtOradores.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //super.mouseClicked(e);
+                if(e.getClickCount() == 2) {
+                    txtCedula_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 0).toString());
+                    txtNombre_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 1).toString());
+                    txtApellido_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 2).toString());
+                    txtCorreo_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 3).toString());
+                    txtTelefono_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 4).toString());
+                    txtDireccion_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 5).toString());
+                    txtTituloPro_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 6).toString());
+                }
+            }
+        });
+        jtAsistentes.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        jtSalas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+        jtEventos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
             }
         });
     }
