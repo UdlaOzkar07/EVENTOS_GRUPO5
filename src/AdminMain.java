@@ -45,8 +45,8 @@ public class AdminMain extends JFrame{
     private JButton REGISTRARORADORButton;
     private JButton btnRegistrarAsistente;
     private JButton REGISTRAREVENTOButton;
-    private JButton ASIGNARSALAButton;
-    private JButton ASIGNARORADORButton;
+    private JButton ASIGNARPROCESOButton;
+    private JButton ASIGNAPROCESOButton;
     private JButton REGISTRARASISTENTEButton1;
     private JButton btnSalir;
     private JPanel jpUsuarioFieldCol1;
@@ -96,23 +96,12 @@ public class AdminMain extends JFrame{
     private JButton btnModificar_E;
     private JButton btnEliminar_E;
     private JTextField txtIdEvento_E;
-    private JTextField txtNombre_E;
     private JTextField txtDescripcion_E;
     private JComboBox cbxTipo_E;
     private JComboBox cbxEstado_E;
-    private JSpinner spAforo_E;
     private JTextField txtFecha_E;
     private JTextField txtHoraInicio_E;
     private JTextField txtHorafin_E;
-    private JLabel lblIdEvento_E;
-    private JLabel lblNombre_E;
-    private JLabel lblDescripcion_E;
-    private JLabel lblTipo_E;
-    private JLabel lblEstado_E;
-    private JLabel lblaforo_E;
-    private JLabel lblFecha_E;
-    private JLabel lblHoraInicio_E;
-    private JLabel lblHoraFin_E;
     private JButton btnModificar_O;
     private JButton btnEliminar;
     private JTextField txtCedula_O;
@@ -347,7 +336,7 @@ public class AdminMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Evento evento = new Evento(txtIdEvento_E.getText(),txtNombre_A.getText(),txtDescripcion_E.getText(),cbxTipo_E.getSelectedItem().toString(), Date.valueOf(txtFecha_E.getText()), Time.valueOf(txtHoraInicio_E.getText()),Time.valueOf(txtHorafin_E.getText()),Integer.parseInt(spCapacidad_S.getValue().toString()),cbxEstado_E.getSelectedItem().toString());
+                    Evento evento = new Evento(txtIdEvento_E.getText(),txtNombre_A.getText(),txtDescripcion_E.getText(),cbxTipo_E.getSelectedItem().toString(), Date.valueOf(txtFecha_E.getText()), Time.valueOf(txtHoraInicio_E.getText()),Time.valueOf(txtHorafin_E.getText()),Integer.parseInt(spCapacidad_S.getValue().toString()),cbxEstado_E.getSelectedItem().toString(),txtIdEvento_E.getText());
                     eventos.modificarEvento(evento);
                     initializeJTableEvento();
                     JOptionPane.showMessageDialog(null,"Evento modificado correctamente");
@@ -407,6 +396,12 @@ public class AdminMain extends JFrame{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+            }
+        });
+        REGISTRAREVENTOButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrarEvento nuevoEvento = new RegistrarEvento(eventos,salas,oradores);
             }
         });
     }

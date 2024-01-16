@@ -11,8 +11,9 @@ public class Evento {
     private Time horafin;
     private Integer cupoMaximo;
     private String estado;
+    private String idSala;
 
-    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Time horainicio, Time horafin, Integer cupoMaximo, String estado) {
+    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Time horainicio, Time horafin, Integer cupoMaximo, String estado, String idSala) {
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -22,6 +23,7 @@ public class Evento {
         this.horafin = horafin;
         this.cupoMaximo = cupoMaximo;
         this.estado = estado;
+        this.idSala = idSala;
     }
 
     public String getIdEvento() {
