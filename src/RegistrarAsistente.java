@@ -26,6 +26,7 @@ public class RegistrarAsistente extends JFrame{
     private AsistenteMngt asistente;
 
     public RegistrarAsistente(AsistenteMngt asistente) {
+        initializeJFrame();
         this.asistente = asistente;
 
 
@@ -43,7 +44,7 @@ public class RegistrarAsistente extends JFrame{
         setTitle("Registrar Asistente");
         setContentPane(RegistrarAsistente);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 400);
+        setSize(700, 300);
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
         setLocation(x, y);

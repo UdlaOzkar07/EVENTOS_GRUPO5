@@ -404,6 +404,18 @@ public class AdminMain extends JFrame{
                 RegistrarEvento nuevoEvento = new RegistrarEvento(eventos,salas,oradores);
             }
         });
+        REGISTRARORADORButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrarOrador nuevoOrador = new RegistrarOrador(oradores);
+            }
+        });
+        btnRegistrarAsistente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrarAsistente nuevoAsistente = new RegistrarAsistente(asistentes);
+            }
+        });
     }
 
     private void initializeJTableUsuario(){

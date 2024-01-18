@@ -23,14 +23,14 @@ public class RegistrarOrador extends JFrame{
     private JButton btnCancelar_E;
     private JButton btnRegistrar_O;
     private JPanel RegistrarOrador;
+    private JButton btnCancelar_O;
 
     private OradorMngt orador;
 
     public RegistrarOrador(OradorMngt orador) {
         this.orador = orador;
         initializeJFrame();
-
-        btnCancelar_E.addActionListener(new ActionListener() {
+        btnCancelar_O.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -44,7 +44,7 @@ public class RegistrarOrador extends JFrame{
         setTitle("Registrar Orador");
         setContentPane(RegistrarOrador);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 400);
+        setSize(700, 300);
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
         setLocation(x, y);
