@@ -122,7 +122,7 @@
                   <text value="Direccion"/>
                 </properties>
               </component>
-              <component id="d25fd" class="javax.swing.JTextField" binding="txtHoraInicio_E">
+              <component id="d25fd" class="javax.swing.JTextField" binding="txtDireccion_O">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -138,7 +138,7 @@
                   <text value="Titulo"/>
                 </properties>
               </component>
-              <component id="eb5a4" class="javax.swing.JTextField" binding="txtHorafin_E">
+              <component id="eb5a4" class="javax.swing.JTextField" binding="txtTitulo_O">
                 <constraints>
                   <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -164,7 +164,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="52f65" class="javax.swing.JButton" binding="btnCancelar_E">
+              <component id="52f65" class="javax.swing.JButton" binding="btnCancelar_O">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -177,7 +177,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="89cc9" class="javax.swing.JButton" binding="btnRegistrar_E">
+              <component id="89cc9" class="javax.swing.JButton" binding="btnRegistrar_O">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
