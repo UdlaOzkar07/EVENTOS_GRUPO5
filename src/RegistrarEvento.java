@@ -43,11 +43,33 @@ public class RegistrarEvento extends JFrame{
         this.oradores = oradores;
         initializeJFrame();
         inicializarCbxSalas();
-        inicializarCbxSalas();
+        inicializarCbxOrador();
         btnCancelar_E.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+        cbxIdOrador_E.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String cedula = cbxIdOrador_E.getSelectedItem().toString();
+                txtNombreO_E.setText("");
+                if (cedula != "")
+                {
+                    try {
+                        Orador orador = oradores.obtenerOradorPorCedula(cedula);
+                        txtNombreO_E.setText(orador.getNombre() + " " + orador.getApellido());
+                    }catch (Exception ex){
+                        JOptionPane.showMessageDialog(null,ex.getMessage());
+                    }
+                }
+            }
+        });
+        btnRegistrar_E.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }

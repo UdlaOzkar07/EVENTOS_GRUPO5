@@ -57,4 +57,8 @@ public class EventoMngt {
     {
         return eventos;
     }
+
+    public void registrarEvento(Evento e){
+
+    }
 }

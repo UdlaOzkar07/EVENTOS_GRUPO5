@@ -52,4 +52,14 @@ public class OradorMngt {
     {
         return oradores;
     }
+
+    public Orador obtenerOradorPorCedula(String cedula) throws Exception
+    {
+        for (Orador o: oradores) {
+            if(o.getCedula().equals(cedula))
+                return o;
+        }
+
+        throw new Exception("No se encuentra registrado el Orador con Id: " + cedula);
+    }
 }
