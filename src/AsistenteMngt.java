@@ -1,3 +1,5 @@
+import java.sql.Date;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +11,8 @@ public class AsistenteMngt {
 
 
 
-        asistentes.add(new Asistente("jarteaga","jarteaga","1722631299"," Jahir","Arteaga",21,"jarteaga@hotmail.com","0984694655","Quito"));
-        asistentes.add(new Asistente("jsanchez","jsanchez","1722631289","José","Sánchez",32,"jsanchez@hotmail.com","0984694800","Quito"));
+        asistentes.add(new Asistente("jarteaga","jarteaga","1722631299"," Jahir","Arteaga", Date.valueOf("2023-01-23"),"jarteaga@hotmail.com","0984694655","Quito"));
+        asistentes.add(new Asistente("jsanchez","jsanchez","1722631289","José","Sánchez",Date.valueOf("2023-01-23"),"jsanchez@hotmail.com","0984694800","Quito"));
     }
 
     public void agregarAsistente(Asistente asistente) throws Exception{
@@ -38,6 +40,13 @@ public class AsistenteMngt {
         for (Asistente a: asistentes) {
             if (a.getCedula().equals(asistente.getCedula())){
                 a.setNombre(asistente.getNombre());
+                a.setApellido(asistente.getApellido());
+                a.setFechaNacimiento(asistente.getFechaNacimiento());
+                a.setCorreo(asistente.getCorreo());
+                a.setDireccion(asistente.getDireccion());
+                a.setTelefono(asistente.getTelefono());
+                a.setIdUsuario(asistente.getIdUsuario());
+                a.setContrasena(asistente.getContrasena());
             }
         }
     }
@@ -54,5 +63,15 @@ public class AsistenteMngt {
     public List<Asistente> listarAsistentes()
     {
         return asistentes;
+    }
+
+    public Asistente obtenerAsistentePorCedula(String cedula) throws Exception
+    {
+        for (Asistente a: asistentes) {
+            if(a.getCedula().equals(cedula))
+                return a;
+        }
+
+        throw new Exception("No se encuentra registrado el Asistente con Id: " + cedula);
     }
 }

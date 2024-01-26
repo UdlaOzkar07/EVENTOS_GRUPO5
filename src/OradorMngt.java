@@ -35,6 +35,13 @@ public class OradorMngt {
         for (Orador o: oradores) {
             if (o.getCedula().equals(orador.getCedula())){
                 o.setNombre(orador.getNombre());
+                o.setApellido(orador.getApellido());
+                o.setCorreo(orador.getCorreo());
+                o.setDireccion(orador.getDireccion());
+                o.setTelefono(orador.getTelefono());
+                o.setTitulo(orador.getTitulo());
+                o.setIdUsuario(orador.getIdUsuario());
+                o.setContrasena(orador.getContrasena());
             }
         }
     }

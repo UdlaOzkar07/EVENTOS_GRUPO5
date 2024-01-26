@@ -2,12 +2,14 @@ public class Usuario {
     private String idUsuario;
     private String contrasena;
     private String nombreCompleto;
+    private String email;
     private String rol;
 
-    public Usuario(String idUsuario, String contrasena, String nombreCompleto, String rol) {
+    public Usuario(String idUsuario, String contrasena, String nombreCompleto, String email, String rol) {
         this.idUsuario = idUsuario;
         this.contrasena = contrasena;
         this.nombreCompleto = nombreCompleto;
+        this.email = email;
         this.rol = rol;
     }
 
@@ -33,6 +35,14 @@ public class Usuario {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getRol() {

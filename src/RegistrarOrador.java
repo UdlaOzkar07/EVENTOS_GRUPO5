@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RegistrarOrador extends JFrame{
+public class RegistrarOrador extends JDialog{
 
     private JPanel jpEvento;
     private JLabel lblIdEvento_E;
@@ -20,20 +20,54 @@ public class RegistrarOrador extends JFrame{
     private JLabel lblHoraFin_E;
     private JTextField txtTitulo_O;
     private JTextField txtCorreo_O;
-    private JButton btnCancelar_E;
-    private JButton btnRegistrar_O;
+    private JButton btnGuardar_O;
     private JPanel RegistrarOrador;
     private JButton btnCancelar_O;
+    private JTextField txtIdUsuario_O;
+    private JTextField txtContrasena_O;
+    private JLabel lbIdUsuario_O;
+    private JLabel lblContrasena_O;
 
-    private OradorMngt orador;
-
-    public RegistrarOrador(OradorMngt orador) {
-        this.orador = orador;
+    public RegistrarOrador(OradorMngt oradores, String cedula) {
         initializeJFrame();
+        if(cedula != "") {
+            btnGuardar_O.setText("Editar");
+            txtCedula_O.setEditable(false);
+            try {
+                inicializeFields(oradores.obtenerOradorPorCedula(cedula));
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+            }
+        }
+
         btnCancelar_O.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+            }
+        });
+        btnGuardar_O.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Orador orador = new Orador(txtIdUsuario_O.getText(),txtContrasena_O.getText(),txtCedula_O.getText(),txtNombre_O.getText(),txtApellido_O.getText(),txtCorreo_O.getText(),txtTelefono_O.getText(),txtDireccion_O.getText(),txtTitulo_O.getText());
+                    if (cedula == "") {
+                        oradores.agregarOrador(orador);
+                        JOptionPane.showMessageDialog(null, "Orador registrado correctamente");
+                    }
+                    else
+                    {
+                        oradores.modificarOrador(orador);
+                        JOptionPane.showMessageDialog(null, "Orador modificado correctamente");
+                    }
+                    dispose();
+                }
+                catch (Exception ex)
+                {
+                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                }
             }
         });
     }
@@ -41,16 +75,28 @@ public class RegistrarOrador extends JFrame{
     private void initializeJFrame() {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-        setTitle("Registrar Orador");
+        setTitle("Orador");
         setContentPane(RegistrarOrador);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setModal(true);
+        getRootPane().setDefaultButton(btnGuardar_O);
+
         setSize(700, 300);
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
         setLocation(x, y);
         setResizable(false);
-        setVisible(true);
     }
 
-
+    private void inicializeFields(Orador editarOrador)
+    {
+        txtCedula_O.setText(editarOrador.getCedula());
+        txtNombre_O.setText(editarOrador.getNombre());
+        txtApellido_O.setText(editarOrador.getApellido());
+        txtCorreo_O.setText(editarOrador.getCorreo());
+        txtDireccion_O.setText(editarOrador.getDireccion());
+        txtTelefono_O.setText(editarOrador.getTelefono());
+        txtTitulo_O.setText(editarOrador.getTitulo());
+        txtIdUsuario_O.setText(editarOrador.getIdUsuario());
+        txtContrasena_O.setText(editarOrador.getContrasena());
+    }
 }

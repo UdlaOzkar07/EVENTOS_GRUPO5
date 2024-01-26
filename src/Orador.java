@@ -10,7 +10,7 @@ public class Orador extends Usuario {
     private String titulo;
 
     public Orador(String idUsuario,String contrasena, String cedula, String nombre, String apellido, String correo, String telefono, String direccion, String titulo) {
-        super(idUsuario,contrasena,nombre + " " + apellido,"Orador");
+        super(idUsuario,contrasena,nombre + " " + apellido,correo ,"Orador");
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;

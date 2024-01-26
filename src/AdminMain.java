@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
-import java.sql.Time;
 
 public class AdminMain extends JFrame{
     private JTabbedPane tpAdminApp;
@@ -45,54 +43,28 @@ public class AdminMain extends JFrame{
     private JButton REGISTRARORADORButton;
     private JButton btnRegistrarAsistente;
     private JButton REGISTRAREVENTOButton;
-    private JButton ASIGNARPROCESOButton;
+    private JButton REGISTRARSALASButton;
     private JButton ASIGNAPROCESOButton;
-    private JButton REGISTRARASISTENTEButton1;
+    private JButton asignarProcesoButton;
     private JButton btnSalir;
     private JPanel jpUsuarioFieldCol1;
     private JTextField txtIdUsuario_U;
     private JTextField txtContrasena_U;
     private JTextField txtNombreCompleto_U;
-    private JComboBox cbxRol_U;
     private JLabel lblIdUsuario_U;
     private JLabel lblContrasena_U;
     private JPanel jpUsuarioFieldCol2;
     private JLabel lblNombreCompleto_U;
-    private JLabel lblRol_U;
     private JButton btnGuardar_U;
-    private JPanel jpSalasFields;
     private JButton btnAgregar_S;
     private JButton btnModificar_S;
     private JButton btnEliminar_S;
     private JTextField txtIdSala_S;
     private JTextField txtUbicacion_S;
-    private JPanel jpSalasColm1;
-    private JPanel jpSalasColm2;
-    private JLabel lblIdSala_S;
     private JTextField txtEquipamiento_S;
-    private JLabel lblEquipamiento_S;
     private JSpinner spCapacidad_S;
-    private JLabel lblCapacidad_S;
-    private JLabel lblUbicacion_S;
-    private JLabel lblDisponibilidad;
-    private JRadioButton rdDisponibilidad_S;
-    private JRadioButton rbDisponibilidadN_S;
-    private JButton btnModificar_A;
+    private JButton btnEditar_A;
     private JButton btnEliminar_A;
-    private JTextField txtCedula_A;
-    private JTextField txtNombre_A;
-    private JTextField txtApellido_A;
-    private JSpinner spEdad;
-    private JTextField txtCorreo_A;
-    private JTextField txtTelefono_A;
-    private JTextField txtDireccion_A;
-    private JLabel lblCedula_A;
-    private JLabel lblNombre_A;
-    private JLabel lblApellido_A;
-    private JLabel lvlEdad_A;
-    private JLabel lblCorreo_A;
-    private JLabel lblTelefono_A;
-    private JLabel lblDireccion_A;
     private JButton btnModificar_E;
     private JButton btnEliminar_E;
     private JTextField txtIdEvento_E;
@@ -102,22 +74,10 @@ public class AdminMain extends JFrame{
     private JTextField txtFecha_E;
     private JTextField txtHoraInicio_E;
     private JTextField txtHorafin_E;
-    private JButton btnModificar_O;
+    private JButton btnEditar_O;
     private JButton btnEliminar;
-    private JTextField txtCedula_O;
-    private JTextField txtNombre_O;
-    private JTextField txtApellido_O;
-    private JTextField txtTituloPro_O;
-    private JTextField txtCorreo_O;
-    private JTextField txtTelefono_O;
-    private JTextField txtDireccion_O;
-    private JLabel lblCedula_O;
-    private JLabel lblNombre_O;
-    private JLabel lblApellido_O;
-    private JLabel lblTituloPro_O;
-    private JLabel lblCorreo_O;
-    private JLabel lblTelefono_O;
-    private JLabel lblDireccion_O;
+    private JTextField txtEmail_U;
+    private JLabel lblEmail_U;
     private UsuarioMngt usuarios;
     private OradorMngt oradores = new OradorMngt();
     private AsistenteMngt asistentes = new AsistenteMngt();
@@ -154,7 +114,7 @@ public class AdminMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),cbxRol_U.getSelectedItem().toString());
+                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),txtEmail_U.getText(),"Administrador");
                     usuarios.modificarUsuario(usuario);
                     initializeJTableUsuario();
                     resetFieldUsuario();
@@ -170,7 +130,7 @@ public class AdminMain extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),cbxRol_U.getSelectedItem().toString());
+                    Usuario usuario = new Usuario(txtIdUsuario_U.getText(),txtContrasena_U.getText(),txtNombreCompleto_U.getText(),txtEmail_U.getText(),"Administrador");
                     usuarios.agregarUsuario(usuario);
                     initializeJTableUsuario();
                     resetFieldUsuario();
@@ -189,47 +149,33 @@ public class AdminMain extends JFrame{
                     txtIdUsuario_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 0).toString());
                     txtContrasena_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 1).toString());
                     txtNombreCompleto_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 2).toString());
-                    cbxRol_U.setSelectedItem(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(), 3).toString());
-                }
-            }
-        });
-        btnRegistrarAsistente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    initializeJTableAsistente();
-                }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                    txtEmail_U.setText(jtUsuarios.getValueAt(jtUsuarios.getSelectedRow(),3).toString());
                 }
             }
         });
         REGISTRARORADORButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-
-                    initializeJTableOrador();
-                }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
-                }
+                RegistrarOrador nuevoOrador = new RegistrarOrador(oradores, "");
+                nuevoOrador.pack();
+                nuevoOrador.setVisible(true);
+                initializeJTableOrador();
             }
         });
-        btnModificar_O.addActionListener(new ActionListener() {
+        btnEditar_O.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Orador orador = new Orador("","",txtCedula_O.getText(),txtNombre_O.getText(),txtApellido_O.getText(),txtCorreo_O.getText(),txtTelefono_O.getText(),txtDireccion_O.getText(),txtTituloPro_O.getText());
-                    oradores.modificarOrador(orador);
+                int selectedRow = jtOradores.getSelectedRow();
+                if (selectedRow != -1) {
+                    String cedula = jtOradores.getValueAt(jtOradores.getSelectedRow(), 0).toString();
+
+                    RegistrarOrador nuevoOrador = new RegistrarOrador(oradores, cedula);
+                    nuevoOrador.pack();
+                    nuevoOrador.setVisible(true);
                     initializeJTableOrador();
-                    JOptionPane.showMessageDialog(null,"Orador modificado correctamente");
                 }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un orador");
                 }
             }
         });
@@ -251,18 +197,20 @@ public class AdminMain extends JFrame{
                 }
             }
         });
-        btnModificar_A.addActionListener(new ActionListener() {
+        btnEditar_A.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Asistente asistente = new Asistente("","",txtCedula_A.getText(),txtNombre_A.getText(),txtApellido_A.getText(),Integer.parseInt(spEdad.getValue().toString()),txtCorreo_A.getText(),txtTelefono_A.getText(),txtDireccion_A.getText());
-                    asistentes.modificarAsistente(asistente);
+                int selectedRow = jtAsistentes.getSelectedRow();
+                if (selectedRow != -1) {
+                    String cedula = jtAsistentes.getValueAt(jtAsistentes.getSelectedRow(), 0).toString();
+
+                    RegistrarAsistente nuevoAsistente = new RegistrarAsistente(asistentes,cedula);
+                    nuevoAsistente.pack();
+                    nuevoAsistente.setVisible(true);
                     initializeJTableAsistente();
-                    JOptionPane.showMessageDialog(null,"Asistente modificado correctamente");
                 }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un asistente");
                 }
             }
         });
@@ -284,33 +232,19 @@ public class AdminMain extends JFrame{
                 }
             }
         });
-        btnAgregar_S.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    Sala sala = new Sala(txtIdSala_S.getText(),Integer.parseInt(spCapacidad_S.getValue().toString()),txtEquipamiento_S.getText(),txtUbicacion_S.getText(),true);
-                    salas.agregarSala(sala);
-                    initializeJTableSala();
-                    JOptionPane.showMessageDialog(null,"Sala creada correctamente");
-                }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
-                }
-            }
-        });
         btnModificar_S.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Sala sala = new Sala(txtIdSala_S.getText(),Integer.parseInt(spCapacidad_S.getValue().toString()),txtEquipamiento_S.getText(),txtUbicacion_S.getText(),true);
-                    salas.modificarSala(sala);
+                int selectedRow = jtSalas.getSelectedRow();
+                if (selectedRow != -1){
+                    String idSala = jtSalas.getValueAt(selectedRow, 0).toString();
+                    RegistrarSala nuevaSala = new RegistrarSala(salas,idSala);
+                    nuevaSala.pack();
+                    nuevaSala.setVisible(true);
                     initializeJTableSala();
-                    JOptionPane.showMessageDialog(null,"Sala modificada correctamente");
                 }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione una sala");
                 }
             }
         });
@@ -335,15 +269,16 @@ public class AdminMain extends JFrame{
         btnModificar_E.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Evento evento = new Evento(txtIdEvento_E.getText(),txtNombre_A.getText(),txtDescripcion_E.getText(),cbxTipo_E.getSelectedItem().toString(), Date.valueOf(txtFecha_E.getText()), Time.valueOf(txtHoraInicio_E.getText()),Time.valueOf(txtHorafin_E.getText()),Integer.parseInt(spCapacidad_S.getValue().toString()),cbxEstado_E.getSelectedItem().toString(),txtIdEvento_E.getText());
-                    eventos.modificarEvento(evento);
+                int selectedRow = jtEventos.getSelectedRow();
+                if (selectedRow != -1){
+                    String idEvento = jtEventos.getValueAt(selectedRow, 0).toString();
+                    RegistrarEvento nuevoEvento = new RegistrarEvento(eventos,salas,oradores,idEvento);
+                    nuevoEvento.pack();
+                    nuevoEvento.setVisible(true);
                     initializeJTableEvento();
-                    JOptionPane.showMessageDialog(null,"Evento modificado correctamente");
                 }
-                catch (Exception ex)
-                {
-                    JOptionPane.showMessageDialog(null,ex.getMessage());
+                else {
+                    JOptionPane.showMessageDialog(null,"Seleccione un evento");
                 }
             }
         });
@@ -365,55 +300,37 @@ public class AdminMain extends JFrame{
                 }
             }
         });
-        jtOradores.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                //super.mouseClicked(e);
-                if(e.getClickCount() == 2) {
-                    txtCedula_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 0).toString());
-                    txtNombre_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 1).toString());
-                    txtApellido_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 2).toString());
-                    txtCorreo_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 3).toString());
-                    txtTelefono_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 4).toString());
-                    txtDireccion_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 5).toString());
-                    txtTituloPro_O.setText(jtOradores.getValueAt(jtOradores.getSelectedRow(), 6).toString());
-                }
-            }
-        });
-        jtAsistentes.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        jtSalas.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
-        jtEventos.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
         REGISTRAREVENTOButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegistrarEvento nuevoEvento = new RegistrarEvento(eventos,salas,oradores);
-            }
-        });
-        REGISTRARORADORButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                RegistrarOrador nuevoOrador = new RegistrarOrador(oradores);
+                RegistrarEvento nuevoEvento = new RegistrarEvento(eventos,salas,oradores,"");
+                nuevoEvento.pack();
+                nuevoEvento.setVisible(true);
+                initializeJTableEvento();
             }
         });
         btnRegistrarAsistente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RegistrarAsistente nuevoAsistente = new RegistrarAsistente(asistentes);
+                RegistrarAsistente nuevoAsistente = new RegistrarAsistente(asistentes,"");
+                nuevoAsistente.pack();
+                nuevoAsistente.setVisible(true);
+                initializeJTableAsistente();
+            }
+        });
+        REGISTRARSALASButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrarSala nuevaSala = new RegistrarSala(salas,"");
+                nuevaSala.pack();
+                nuevaSala.setVisible(true);
+                initializeJTableSala();
+            }
+        });
+        btnSalir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
             }
         });
     }
@@ -429,12 +346,12 @@ public class AdminMain extends JFrame{
         usuarioModel.addColumn("Id. Usario");
         usuarioModel.addColumn("Contraseña");
         usuarioModel.addColumn("Nombre completo");
-        usuarioModel.addColumn("Rol");
+        usuarioModel.addColumn("Corrreo");
 
         usuarioModel.setRowCount(0);
 
         for (Usuario u : usuarios.listarUsuarios()) {
-            usuarioModel.addRow(new Object[]{u.getIdUsuario(),u.getContrasena(),u.getNombreCompleto(),u.getRol()});
+            usuarioModel.addRow(new Object[]{u.getIdUsuario(),u.getContrasena(),u.getNombreCompleto(),u.getEmail()});
         }
 
         jtUsuarios.setModel(usuarioModel);
@@ -444,7 +361,7 @@ public class AdminMain extends JFrame{
         txtIdUsuario_U.setText("");
         txtNombreCompleto_U.setText("");
         txtContrasena_U.setText("");
-        cbxRol_U.setSelectedIndex(0);
+        txtEmail_U.setText("");
     }
 
     private void initializeJTableOrador(){
@@ -483,7 +400,7 @@ public class AdminMain extends JFrame{
         asistenteModel.addColumn("Cedula");
         asistenteModel.addColumn("Nombre");
         asistenteModel.addColumn("Apellido");
-        asistenteModel.addColumn("Edad");
+        asistenteModel.addColumn("Fecha nacimiento");
         asistenteModel.addColumn("Correo");
         asistenteModel.addColumn("Telefono");
         asistenteModel.addColumn("Direccion");
@@ -491,7 +408,7 @@ public class AdminMain extends JFrame{
         asistenteModel.setRowCount(0);
 
         for (Asistente a : asistentes.listarAsistentes()) {
-            asistenteModel.addRow(new Object[]{a.getCedula(),a.getNombre(),a.getApellido(),a.getEdad(),a.getCorreo(),a.getTelefono(),a.getDireccion()});
+            asistenteModel.addRow(new Object[]{a.getCedula(),a.getNombre(),a.getApellido(),a.getFechaNacimiento(),a.getCorreo(),a.getTelefono(),a.getDireccion()});
         }
 
         jtAsistentes.setModel(asistenteModel);
@@ -509,12 +426,11 @@ public class AdminMain extends JFrame{
             salaModel.addColumn("Capacidad");
             salaModel.addColumn("Equipamiento");
             salaModel.addColumn("Ubicacion");
-            salaModel.addColumn("Disponible");
 
             salaModel.setRowCount(0);
 
             for (Sala s : salas.listarSalas()) {
-                salaModel.addRow(new Object[]{s.getIdSala(),s.getCapacidad(),s.getEquipamiento(),s.getUbicacion(),s.isDispoble()});
+                salaModel.addRow(new Object[]{s.getIdSala(),s.getCapacidad(),s.getEquipamiento(),s.getUbicacion()});
             }
 
             jtSalas.setModel(salaModel);
@@ -534,14 +450,12 @@ public class AdminMain extends JFrame{
         eventoModel.addColumn("Tipo");
         eventoModel.addColumn("Aforo permitido");
         eventoModel.addColumn("Fecha evento");
-        eventoModel.addColumn("Hora Inicio");
-        eventoModel.addColumn("Hora Fin");
         eventoModel.addColumn("Estado");
 
         eventoModel.setRowCount(0);
 
         for (Evento e : eventos.listarEventos()) {
-            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getHorainicio(),e.getHorafin(),e.getEstado()});
+            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
         }
 
         jtEventos.setModel(eventoModel);

@@ -11,8 +11,8 @@ public class EventoMngt {
     public EventoMngt() {
         this.eventos = new ArrayList<Evento>();
 
-        eventos.add(new Evento("001","Iniciativas de team building", "objetivo es motivar o formar grupos de trabajo","Social", Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.now()),Time.valueOf(LocalTime.now()),35,"Pendiente", "001"));
-        eventos.add(new Evento("002","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf(LocalDate.now()), Time.valueOf(LocalTime.now()),Time.valueOf(LocalTime.now()),35,"Finalizado","002"));
+        eventos.add(new Evento("001","Iniciativas de team building", "objetivo es motivar o formar grupos de trabajo","Social", Date.valueOf("2023-12-25"),35,"Finalizado", "001","1722631296"));
+        eventos.add(new Evento("002","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2023-12-31"),35,"Finalizado","002","1722631297"));
     }
 
     public void agregarEvento(Evento evento) throws Exception{
@@ -58,7 +58,13 @@ public class EventoMngt {
         return eventos;
     }
 
-    public void registrarEvento(Evento e){
+    public Evento obtenerEvento(String idEvento) throws Exception
+    {
+        for (Evento e: eventos) {
+            if(e.getIdEvento().equals(idEvento))
+                return e;
+        }
 
+        throw new Exception("No se encuentra registrado el evento con Id: " + idEvento);
     }
 }

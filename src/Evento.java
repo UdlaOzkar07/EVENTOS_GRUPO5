@@ -7,23 +7,21 @@ public class Evento {
     private String descripcion;
     private String tipoEvento;
     private Date fecha;
-    private Time horainicio;
-    private Time horafin;
     private Integer cupoMaximo;
     private String estado;
     private String idSala;
+    private String idOrador;
 
-    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Time horainicio, Time horafin, Integer cupoMaximo, String estado, String idSala) {
+    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Integer cupoMaximo, String estado, String idSala, String idOrador) {
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoEvento = tipoEvento;
         this.fecha = fecha;
-        this.horainicio = horainicio;
-        this.horafin = horafin;
         this.cupoMaximo = cupoMaximo;
         this.estado = estado;
         this.idSala = idSala;
+        this.idOrador = idOrador;
     }
 
     public String getIdEvento() {
@@ -66,22 +64,6 @@ public class Evento {
         this.fecha = fecha;
     }
 
-    public Time getHorainicio() {
-        return horainicio;
-    }
-
-    public void setHorainicio(Time horainicio) {
-        this.horainicio = horainicio;
-    }
-
-    public Time getHorafin() {
-        return horafin;
-    }
-
-    public void setHorafin(Time horafin) {
-        this.horafin = horafin;
-    }
-
     public Integer getCupoMaximo() {
         return cupoMaximo;
     }
@@ -98,6 +80,22 @@ public class Evento {
         this.estado = estado;
     }
 
+    public String getIdSala() {
+        return idSala;
+    }
+
+    public void setIdSala(String idSala) {
+        this.idSala = idSala;
+    }
+
+    public String getIdOrador() {
+        return idOrador;
+    }
+
+    public void setIdOrador(String idOrador) {
+        this.idOrador = idOrador;
+    }
+
     @Override
     public String toString() {
         return "Evento{" +
@@ -106,8 +104,6 @@ public class Evento {
                 ", descripcion='" + descripcion + '\'' +
                 ", tipoEvento='" + tipoEvento + '\'' +
                 ", fecha=" + fecha +
-                ", horainicio=" + horainicio +
-                ", horafin=" + horafin +
                 ", cupoMaximo=" + cupoMaximo +
                 ", estado='" + estado + '\'' +
                 '}';

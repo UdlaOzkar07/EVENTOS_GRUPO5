@@ -3,14 +3,12 @@ public class Sala {
     private Integer capacidad;
     private String equipamiento;
     private String ubicacion;
-    private boolean disponiblible;
 
-    public Sala(String idSala, Integer capacidad, String equipamiento, String ubicacion, boolean disponiblible) {
+    public Sala(String idSala, Integer capacidad, String equipamiento, String ubicacion) {
         this.idSala = idSala;
         this.capacidad = capacidad;
         this.equipamiento = equipamiento;
         this.ubicacion = ubicacion;
-        this.disponiblible = disponiblible;
     }
 
     public String getIdSala() {
@@ -45,13 +43,6 @@ public class Sala {
         this.ubicacion = ubicacion;
     }
 
-    public boolean isDispoble() {
-        return disponiblible;
-    }
-
-    public void setDisponible(boolean disponiblible) {
-        this.disponiblible = disponiblible;
-    }
 
     @Override
     public String toString() {
@@ -60,7 +51,6 @@ public class Sala {
                 ", capacidad=" + capacidad +
                 ", equipamiento='" + equipamiento + '\'' +
                 ", ubicacion='" + ubicacion + '\'' +
-                ", disponiblible=" + disponiblible +
                 '}';
     }
 }

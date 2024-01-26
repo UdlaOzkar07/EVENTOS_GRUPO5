@@ -7,8 +7,11 @@ public class SalaMngt {
     public SalaMngt() {
         this.salas = new ArrayList<Sala>();
 
-        salas.add(new Sala("001",50,"Proyector, Control, Computador","Planta Baja",true));
-        salas.add(new Sala("002",100,"Proyector, Control, Computador","Segundo Piso",false));
+        salas.add(new Sala("001",50,"Proyector, Control, Computador","Planta Baja"));
+        salas.add(new Sala("002",50,"Proyector, Control, Computador","Planta Baja"));
+        salas.add(new Sala("003",70,"Proyector, Control, Computador","Segundo Piso"));
+        salas.add(new Sala("004",70,"Proyector, Control, Computador","Segundo Piso"));
+        salas.add(new Sala("005",100,"Proyector, Control, Computador","Tercer Piso"));
     }
 
     public void agregarSala(Sala sala) throws Exception{
@@ -38,7 +41,6 @@ public class SalaMngt {
                 s.setCapacidad(sala.getCapacidad());
                 s.setEquipamiento(sala.getEquipamiento());
                 s.setUbicacion(sala.getUbicacion());
-                s.setDisponible(sala.isDispoble());
             }
         }
     }
@@ -55,5 +57,15 @@ public class SalaMngt {
     public List<Sala> listarSalas()
     {
         return salas;
+    }
+
+    public Sala obtenerSala(String idSala) throws Exception
+    {
+        for (Sala s: salas) {
+            if(s.getIdSala().equals(idSala))
+                return s;
+        }
+
+        throw new Exception("No se encuentra registrado la Sala con Id: " + idSala);
     }
 }

@@ -1,18 +1,20 @@
+import java.util.Date;
+
 public class Asistente extends Usuario {
     private String cedula;
     private String nombre;
     private String apellido;
-    private Integer edad;
+    private Date fechaNacimiento;
     private String correo;
     private String telefono;
     private String direccion;
 
-    public Asistente(String idUsuario, String contrasena, String cedula, String nombre, String apellido, Integer edad, String correo, String telefono, String direccion) {
-        super(idUsuario, contrasena, nombre + " " + apellido , "Asistente");
+    public Asistente(String idUsuario, String contrasena, String cedula, String nombre, String apellido, Date fechaNacimiento, String correo, String telefono, String direccion) {
+        super(idUsuario, contrasena, nombre + " " + apellido ,correo , "Asistente");
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.edad = edad;
+        this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
         this.telefono = telefono;
         this.direccion = direccion;
@@ -42,12 +44,12 @@ public class Asistente extends Usuario {
         this.apellido = apellido;
     }
 
-    public Integer getEdad() {
-        return edad;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(Integer edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(Date edad) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getCorreo() {
@@ -80,7 +82,7 @@ public class Asistente extends Usuario {
                 "cedula='" + cedula + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", edad=" + edad +
+                ", fechaNacimiento=" + fechaNacimiento +
                 ", correo='" + correo + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
