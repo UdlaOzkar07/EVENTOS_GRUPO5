@@ -44,7 +44,7 @@ public class AdminMain extends JFrame{
     private JButton btnRegistrarAsistente;
     private JButton REGISTRAREVENTOButton;
     private JButton REGISTRARSALASButton;
-    private JButton ASIGNAPROCESOButton;
+    private JButton INSCRIBIRASISTENTEAEVENTOButton;
     private JButton asignarProcesoButton;
     private JButton btnSalir;
     private JPanel jpUsuarioFieldCol1;
@@ -83,6 +83,7 @@ public class AdminMain extends JFrame{
     private AsistenteMngt asistentes = new AsistenteMngt();
     private SalaMngt salas = new SalaMngt();
     private EventoMngt eventos = new EventoMngt();
+    private AsistenteEventoMngt asistenteEventos = new AsistenteEventoMngt();
 
     public AdminMain(UsuarioMngt usuarios) {
         this.usuarios = usuarios;
@@ -333,6 +334,23 @@ public class AdminMain extends JFrame{
                 dispose();
             }
         });
+        INSCRIBIRASISTENTEAEVENTOButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RegistrarAsistenteEvento inscribir = new RegistrarAsistenteEvento(asistenteEventos,eventos,asistentes);
+                inscribir.pack();
+                inscribir.setVisible(true);
+                initializeJTableEvento();
+            }
+        });
+        asignarProcesoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EventoEstado buscarEvento = new EventoEstado(eventos);
+                buscarEvento.pack();
+                buscarEvento.setVisible(true);
+            }
+        });
     }
 
     private void initializeJTableUsuario(){
@@ -451,11 +469,12 @@ public class AdminMain extends JFrame{
         eventoModel.addColumn("Aforo permitido");
         eventoModel.addColumn("Fecha evento");
         eventoModel.addColumn("Estado");
+        eventoModel.addColumn("Numero de Asistentes");
 
         eventoModel.setRowCount(0);
 
         for (Evento e : eventos.listarEventos()) {
-            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
+            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado(),eventos.contarAsistentes(asistenteEventos,e.getIdEvento())});
         }
 
         jtEventos.setModel(eventoModel);
@@ -467,7 +486,7 @@ public class AdminMain extends JFrame{
         setTitle("Administración de eventos");
         setContentPane(Admin);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000,600);
+        setSize(1500,600);
         int x = (screenSize.width - getWidth()) / 2;
         int y = (screenSize.height - getHeight()) / 2;
         setLocation(x,y);

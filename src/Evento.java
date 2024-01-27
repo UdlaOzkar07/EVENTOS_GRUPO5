@@ -1,7 +1,7 @@
 import java.sql.Time;
 import java.util.Date;
 
-public class Evento {
+public class Evento implements Comparable<Evento> {
     private String idEvento;
     private String nombre;
     private String descripcion;
@@ -94,6 +94,10 @@ public class Evento {
 
     public void setIdOrador(String idOrador) {
         this.idOrador = idOrador;
+    }
+    @Override
+    public int compareTo(Evento e) {
+        return this.estado.compareTo(e.getEstado());
     }
 
     @Override

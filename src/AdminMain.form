@@ -160,7 +160,7 @@
                         <properties>
                           <font name="Lucida Sans Typewriter" size="14"/>
                           <foreground color="-16770961"/>
-                          <text value="REGISTRAR ASISTENTES"/>
+                          <text value="AGREGAR ASISTENTES"/>
                         </properties>
                       </component>
                     </children>
@@ -175,14 +175,14 @@
                     </properties>
                     <border type="none"/>
                     <children>
-                      <component id="930a3" class="javax.swing.JButton" binding="ASIGNAPROCESOButton" default-binding="true">
+                      <component id="930a3" class="javax.swing.JButton" binding="INSCRIBIRASISTENTEAEVENTOButton" default-binding="true">
                         <constraints>
                           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                         </constraints>
                         <properties>
                           <font name="Lucida Sans Typewriter" size="14"/>
                           <foreground color="-16770961"/>
-                          <text value=""/>
+                          <text value="INSCRIBIR ASISTENTE A EVENTO"/>
                         </properties>
                       </component>
                     </children>
@@ -204,7 +204,7 @@
                         <properties>
                           <font name="Lucida Sans Typewriter" size="14"/>
                           <foreground color="-16770961"/>
-                          <text value="REGISTRAR SALAS"/>
+                          <text value="AGREGAR SALAS"/>
                         </properties>
                       </component>
                     </children>
@@ -250,7 +250,7 @@
                           <foreground color="-16770961"/>
                           <hideActionText value="false"/>
                           <horizontalTextPosition value="11"/>
-                          <text value="REGISTRAR ORADORES"/>
+                          <text value="AGREGAR ORADORES"/>
                           <verticalTextPosition value="0"/>
                         </properties>
                       </component>
@@ -273,7 +273,7 @@
                         <properties>
                           <font name="Lucida Sans Typewriter" size="14"/>
                           <foreground color="-16770961"/>
-                          <text value=""/>
+                          <text value="BUSCAR EVENTO POR ESTADO"/>
                         </properties>
                       </component>
                     </children>

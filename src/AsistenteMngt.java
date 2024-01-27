@@ -9,10 +9,10 @@ public class AsistenteMngt {
     public AsistenteMngt() {
         this.asistentes = new ArrayList<Asistente>();
 
-
-
         asistentes.add(new Asistente("jarteaga","jarteaga","1722631299"," Jahir","Arteaga", Date.valueOf("2023-01-23"),"jarteaga@hotmail.com","0984694655","Quito"));
         asistentes.add(new Asistente("jsanchez","jsanchez","1722631289","José","Sánchez",Date.valueOf("2023-01-23"),"jsanchez@hotmail.com","0984694800","Quito"));
+        asistentes.add(new Asistente("pmartinez","pmartinez","1725245963"," Pedro","Martinez", Date.valueOf("2023-01-23"),"jarteaga@hotmail.com","0984694655","Quito"));
+        asistentes.add(new Asistente("jperez","jsanchez","1722631275","Juan","Perez",Date.valueOf("2023-01-23"),"jsanchez@hotmail.com","0984694800","Quito"));
     }
 
     public void agregarAsistente(Asistente asistente) throws Exception{
