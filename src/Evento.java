@@ -1,27 +1,43 @@
 import java.sql.Time;
 import java.util.Date;
+import java.util.Set;
 
 public class Evento implements Comparable<Evento> {
     private String idEvento;
     private String nombre;
     private String descripcion;
-    private String tipoEvento;
+
     private Date fecha;
-    private Integer cupoMaximo;
+    private int cupoMaximo;
     private String estado;
     private String idSala;
     private String idOrador;
 
-    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Integer cupoMaximo, String estado, String idSala, String idOrador) {
+    private String categorias;
+
+    public Evento(String idEvento, String nombre, String descripcion, Date fecha, int cupoMaximo, String estado, String idSala,
+                  String idOrador,String categorias) {
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.tipoEvento = tipoEvento;
         this.fecha = fecha;
         this.cupoMaximo = cupoMaximo;
         this.estado = estado;
         this.idSala = idSala;
         this.idOrador = idOrador;
+        this.categorias = categorias;
+    }
+
+    public void setCupoMaximo(int cupoMaximo) {
+        this.cupoMaximo = cupoMaximo;
+    }
+
+    public String getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(String categorias) {
+        this.categorias = categorias;
     }
 
     public String getIdEvento() {
@@ -48,13 +64,6 @@ public class Evento implements Comparable<Evento> {
         this.descripcion = descripcion;
     }
 
-    public String getTipoEvento() {
-        return tipoEvento;
-    }
-
-    public void setTipoEvento(String tipoEvento) {
-        this.tipoEvento = tipoEvento;
-    }
 
     public Date getFecha() {
         return fecha;
@@ -86,6 +95,7 @@ public class Evento implements Comparable<Evento> {
 
     public void setIdSala(String idSala) {
         this.idSala = idSala;
+
     }
 
     public String getIdOrador() {
@@ -106,7 +116,7 @@ public class Evento implements Comparable<Evento> {
                 "idEvento='" + idEvento + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", tipoEvento='" + tipoEvento + '\'' +
+                ", CategoriaEvento='" + categorias + '\'' +
                 ", fecha=" + fecha +
                 ", cupoMaximo=" + cupoMaximo +
                 ", estado='" + estado + '\'' +

@@ -3,6 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class RegistrarEvento extends JDialog{
     private JPanel RegistrarEvento;
@@ -18,7 +22,7 @@ public class RegistrarEvento extends JDialog{
     private JLabel lblFecha_E;
     private JLabel lblDescripcion_E;
     private JTextField txtDescripcion_E;
-    private JComboBox cbxTipo_E;
+    private JComboBox cbxCategorias_E;
     private JLabel lblTipo_E;
     private JComboBox cbxEstado_E;
     private JLabel lblEstado_E;
@@ -34,6 +38,8 @@ public class RegistrarEvento extends JDialog{
     private JTextField txtCapacidad_E;
     private SalaMngt salas;
     private OradorMngt oradores;
+
+    private EventoMngt eventoEpico;
 
     public RegistrarEvento(EventoMngt eventos, SalaMngt salas, OradorMngt oradores,String idEvento) {
         this.salas = salas;
@@ -87,12 +93,12 @@ public class RegistrarEvento extends JDialog{
                     Evento evento = new Evento(txtIdEvento_E.getText(),
                             txtNombreO_E.getText(),
                             txtDescripcion_E.getText(),
-                            cbxTipo_E.getSelectedItem().toString(),
                             Date.valueOf(txtFecha_E.getText()),
                             Integer.parseInt(spAforo_E.getValue().toString()),
                             cbxEstado_E.getSelectedItem().toString(),
                             cbxSalas_E.getSelectedItem().toString(),
-                            cbxIdOrador_E.getSelectedItem().toString());
+                            cbxIdOrador_E.getSelectedItem().toString(),
+                            cbxEstado_E.getSelectedItem().toString());
 
                     if (idEvento == "") {
                         eventos.agregarEvento(evento);
@@ -127,7 +133,6 @@ public class RegistrarEvento extends JDialog{
             }
         });
     }
-
     public void inicializarCbxSalas(SalaMngt salas)
     {
         cbxSalas_E.addItem("");
@@ -171,7 +176,7 @@ public class RegistrarEvento extends JDialog{
             spAforo_E.setValue(editarEvento.getCupoMaximo());
             txtFecha_E.setText(editarEvento.getFecha().toString());
             cbxEstado_E.setSelectedItem(editarEvento.getEstado());
-            cbxTipo_E.setSelectedItem(editarEvento.getTipoEvento());
+            cbxCategorias_E.setSelectedItem(editarEvento.getCategorias());
             cbxIdOrador_E.setSelectedItem(orador.getCedula());
             txtNombreO_E.setText(orador.getNombre() + ' ' + orador.getApellido());
             cbxSalas_E.setSelectedItem(sala.getIdSala());

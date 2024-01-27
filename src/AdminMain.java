@@ -474,7 +474,7 @@ public class AdminMain extends JFrame{
         eventoModel.setRowCount(0);
 
         for (Evento e : eventos.listarEventos()) {
-            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado(),eventos.contarAsistentes(asistenteEventos,e.getIdEvento())});
+            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getCategorias(),e.getCupoMaximo(),e.getFecha(),e.getEstado(),eventos.contarAsistentes(asistenteEventos,e.getIdEvento())});
         }
 
         jtEventos.setModel(eventoModel);

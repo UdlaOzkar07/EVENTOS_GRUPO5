@@ -26,7 +26,10 @@ public class RegistrarAsistente extends JDialog{
     private JTextField txtIdUsuario_A;
     private JTextField txtContrasena_A;
     private JLabel lblContrasena_A;
+    private JLabel lblaforo_E;
     private JLabel lblIdUsuario_A;
+    private JTextField txtEdad_A;
+    private JButton btnRegistrar_A;
 
     public RegistrarAsistente(AsistenteMngt asistentes,String cedula) {
         initializeJFrame();
@@ -103,7 +106,7 @@ public class RegistrarAsistente extends JDialog{
         txtCorreo_A.setText(editarAsistente.getCorreo());
         txtDireccion_A.setText(editarAsistente.getDireccion());
         txtTelefono_A.setText(editarAsistente.getTelefono());
-        txtFechaNacimiento_A.setText(editarAsistente.getFechaNacimiento().toString());
+        txtEdad_A.setText(editarAsistente.getFechaNacimiento().toString());
         txtIdUsuario_A.setText(editarAsistente.getIdUsuario());
         txtContrasena_A.setText(editarAsistente.getContrasena());
     }

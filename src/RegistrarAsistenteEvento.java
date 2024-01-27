@@ -86,7 +86,7 @@ public class RegistrarAsistenteEvento extends JDialog {
 
         for (Evento e : eventos.listarEventos()) {
             if (!e.getEstado().equals("Finalizado"))
-                eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
+                eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getCategorias(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
         }
 
         jtAsistenteEvento.setModel(eventoModel);
