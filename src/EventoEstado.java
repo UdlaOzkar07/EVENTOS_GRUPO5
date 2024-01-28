@@ -62,7 +62,7 @@ public class EventoEstado extends JDialog{
         eventoModel.setRowCount(0);
 
         for (Evento e : eventosList) {
-            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getCategorias(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
+            eventoModel.addRow(new Object[]{e.getIdEvento(),e.getNombre(),e.getDescripcion(),e.getTipoEvento(),e.getCupoMaximo(),e.getFecha(),e.getEstado()});
         }
 
         jtEventoEstado.setModel(eventoModel);

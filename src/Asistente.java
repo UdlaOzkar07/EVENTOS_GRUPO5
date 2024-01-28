@@ -8,7 +8,6 @@ public class Asistente extends Usuario {
     private String correo;
     private String telefono;
     private String direccion;
-    private String edad;
 
     public Asistente(String idUsuario, String contrasena, String cedula, String nombre, String apellido, Date fechaNacimiento, String correo, String telefono, String direccion) {
         super(idUsuario, contrasena, nombre + " " + apellido ,correo , "Asistente");
@@ -19,15 +18,6 @@ public class Asistente extends Usuario {
         this.correo = correo;
         this.telefono = telefono;
         this.direccion = direccion;
-
-    }
-
-    public String getEdad() {
-        return edad;
-    }
-
-    public void setEdad(String edad) {
-        this.edad = edad;
     }
 
     public String getCedula() {

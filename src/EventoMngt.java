@@ -2,23 +2,21 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventoMngt {
     private List<Evento> eventos;
-    private Map<String, Set<Evento>>categoriaEventoMap;
 
     public EventoMngt() {
-        this.eventos = new ArrayList<>();
+        this.eventos = new ArrayList<Evento>();
 
-
-        eventos.add(new Evento("001","Iniciativas de team building", "objetivo es motivar o formar grupos de trabajo",Date.valueOf("2023-12-25"),35,"Finalizado", "001","1722631296","Social"));
-        eventos.add(new Evento("002","Juntas generales de accionistas", "elegir al Consejo de Administración",Date.valueOf("2023-12-31"),35,"Finalizado","002","1722631297","Social"));
-        eventos.add(new Evento("003","Juntas generales de accionistas", "elegir al Consejo de Administración",Date.valueOf("2024-02-01"),35,"Creado","002","1722631297","Laboral"));
-        eventos.add(new Evento("004","Juntas generales de accionistas", "elegir al Consejo de Administración",Date.valueOf("2024-02-15"),35,"Creado","002","1722631297","Social"));
-        eventos.add(new Evento("005","Juntas generales de accionistas", "elegir al Consejo de Administración",Date.valueOf("2024-02-15"),35,"En Proceso","002","1722631297","Infantil"));
-        eventos.add(new Evento("006","Juntas generales de accionistas", "elegir al Consejo de Administración", Date.valueOf("2024-02-15"),35,"Cancelado","002","1722631297","Infantil"));
-
+        eventos.add(new Evento("001","Iniciativas de team building", "objetivo es motivar o formar grupos de trabajo","Social", Date.valueOf("2023-12-25"),35,"Finalizado", "001","1722631296"));
+        eventos.add(new Evento("002","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2023-12-31"),35,"Finalizado","002","1722631297"));
+        eventos.add(new Evento("003","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2024-02-01"),35,"Creado","002","1722631297"));
+        eventos.add(new Evento("004","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2024-02-15"),35,"Creado","002","1722631297"));
+        eventos.add(new Evento("005","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2024-02-15"),35,"En Proceso","002","1722631297"));
+        eventos.add(new Evento("006","Juntas generales de accionistas", "elegir al Consejo de Administración","Laboral", Date.valueOf("2024-02-15"),35,"Cancelado","002","1722631297"));
     }
 
     public void agregarEvento(Evento evento) throws Exception{
@@ -130,5 +128,4 @@ public class EventoMngt {
 
         return eventosEncontrados; // Elementos no encontrados
     }
-
 }
