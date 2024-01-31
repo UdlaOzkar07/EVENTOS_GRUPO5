@@ -1,25 +1,25 @@
 public class AsistenteEvento {
-    private String idEvento;
-    private String idAsistente;
+    private Evento evento;
+    private Asistente asistente;
 
-    public AsistenteEvento(String idEvento, String idAsistente) {
-        this.idEvento = idEvento;
-        this.idAsistente = idAsistente;
+    public AsistenteEvento(Evento evento, Asistente asistente) {
+        this.evento = evento;
+        this.asistente = asistente;
     }
 
-    public String getIdEvento() {
-        return idEvento;
+    public Evento getEvento() {
+        return evento;
     }
 
-    public void setIdEvento(String idEvento) {
-        this.idEvento = idEvento;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
-    public String getIdAsistente() {
-        return idAsistente;
+    public Asistente getAsistente() {
+        return asistente;
     }
 
-    public void setIdAsistente(String idAsistente) {
-        this.idAsistente = idAsistente;
+    public void setAsistente(Asistente asistente) {
+        this.asistente = asistente;
     }
 }

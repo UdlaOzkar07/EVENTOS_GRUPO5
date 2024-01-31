@@ -26,7 +26,9 @@ public class RegistrarAsistenteEvento extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    AsistenteEvento nuevoAsistenteE = new AsistenteEvento(txtIdEvento_AE.getText(), cbxIdAsistente_AE.getSelectedItem().toString());
+                    Evento evento = eventos.obtenerEvento(txtIdEvento_AE.getText());
+                    Asistente asistente = asistentes.obtenerAsistentePorCedula(cbxIdAsistente_AE.getSelectedItem().toString());
+                    AsistenteEvento nuevoAsistenteE = new AsistenteEvento(evento,asistente);
                     asitenteEventos.agregarAsistenteEvento(nuevoAsistenteE);
                     JOptionPane.showMessageDialog(null,"Asistente registrado al evento correctamente");
                     dispose();

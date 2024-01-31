@@ -7,12 +7,12 @@ public class Evento implements Comparable<Evento> {
     private String descripcion;
     private String tipoEvento;
     private Date fecha;
-    private Integer cupoMaximo;
+    private int cupoMaximo;
     private String estado;
-    private String idSala;
-    private String idOrador;
+    private Sala sala;
+    private Orador orador;
 
-    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, Integer cupoMaximo, String estado, String idSala, String idOrador) {
+    public Evento(String idEvento, String nombre, String descripcion, String tipoEvento, Date fecha, int cupoMaximo, String estado, Sala sala, Orador orador) {
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -20,8 +20,8 @@ public class Evento implements Comparable<Evento> {
         this.fecha = fecha;
         this.cupoMaximo = cupoMaximo;
         this.estado = estado;
-        this.idSala = idSala;
-        this.idOrador = idOrador;
+        this.sala = sala;
+        this.orador = orador;
     }
 
     public String getIdEvento() {
@@ -64,11 +64,11 @@ public class Evento implements Comparable<Evento> {
         this.fecha = fecha;
     }
 
-    public Integer getCupoMaximo() {
+    public int getCupoMaximo() {
         return cupoMaximo;
     }
 
-    public void setCupoMaximo(Integer cupoMaximo) {
+    public void setCupoMaximo(int cupoMaximo) {
         this.cupoMaximo = cupoMaximo;
     }
 
@@ -80,20 +80,20 @@ public class Evento implements Comparable<Evento> {
         this.estado = estado;
     }
 
-    public String getIdSala() {
-        return idSala;
+    public Sala getSala() {
+        return sala;
     }
 
-    public void setIdSala(String idSala) {
-        this.idSala = idSala;
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
-    public String getIdOrador() {
-        return idOrador;
+    public Orador getOrador() {
+        return orador;
     }
 
-    public void setIdOrador(String idOrador) {
-        this.idOrador = idOrador;
+    public void setOrador(Orador orador) {
+        this.orador = orador;
     }
     @Override
     public int compareTo(Evento e) {

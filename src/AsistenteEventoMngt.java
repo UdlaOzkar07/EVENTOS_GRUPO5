@@ -9,17 +9,17 @@ public class AsistenteEventoMngt {
     }
 
     public void agregarAsistenteEvento(AsistenteEvento asistenteEvento) throws Exception{
-        if (!existeAsistente(asistenteEvento.getIdEvento(),asistenteEvento.getIdAsistente()))
+        if (!existeAsistente(asistenteEvento.getEvento().getIdEvento(),asistenteEvento.getAsistente().getCedula()))
             asistenteEventos.add(asistenteEvento);
         else
-            throw new Exception("El Asistente con Id: " + asistenteEvento.getIdAsistente() + "ya se encuentra inscrito en el evento con Id: " + asistenteEvento.getIdEvento());
+            throw new Exception("El Asistente con Id: " + asistenteEvento.getAsistente().getCedula() + "ya se encuentra inscrito en el evento con Id: " + asistenteEvento.getEvento().getIdEvento());
     }
 
 
     public boolean existeAsistente(String idEvento, String cedula)
     {
         for (AsistenteEvento a: asistenteEventos) {
-            if (a.getIdAsistente().equals(cedula) && a.getIdEvento().equals(idEvento))
+            if (a.getAsistente().getCedula().equals(cedula) && a.getEvento().getIdEvento().equals(idEvento))
                 return true;
         }
 

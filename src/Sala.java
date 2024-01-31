@@ -1,10 +1,10 @@
 public class Sala {
     private String idSala;
-    private Integer capacidad;
+    private int capacidad;
     private String equipamiento;
     private String ubicacion;
 
-    public Sala(String idSala, Integer capacidad, String equipamiento, String ubicacion) {
+    public Sala(String idSala, int capacidad, String equipamiento, String ubicacion) {
         this.idSala = idSala;
         this.capacidad = capacidad;
         this.equipamiento = equipamiento;
@@ -19,11 +19,11 @@ public class Sala {
         this.idSala = idSala;
     }
 
-    public Integer getCapacidad() {
+    public int getCapacidad() {
         return capacidad;
     }
 
-    public void setCapacidad(Integer capacidad) {
+    public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
 

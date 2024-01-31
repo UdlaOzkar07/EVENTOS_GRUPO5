@@ -91,8 +91,8 @@ public class RegistrarEvento extends JDialog{
                             Date.valueOf(txtFecha_E.getText()),
                             Integer.parseInt(spAforo_E.getValue().toString()),
                             cbxEstado_E.getSelectedItem().toString(),
-                            cbxSalas_E.getSelectedItem().toString(),
-                            cbxIdOrador_E.getSelectedItem().toString());
+                            salas.obtenerSala(cbxSalas_E.getSelectedItem().toString()),
+                            oradores.obtenerOradorPorCedula(cbxIdOrador_E.getSelectedItem().toString()));
 
                     if (idEvento == "") {
                         eventos.agregarEvento(evento);
@@ -118,7 +118,7 @@ public class RegistrarEvento extends JDialog{
                 if (idSala != ""){
                     try {
                         Sala sala = salas.obtenerSala(idSala);
-                        txtCapacidad_E.setText(sala.getCapacidad().toString());
+                        txtCapacidad_E.setText(Integer.toString(sala.getCapacidad()));
                     }
                     catch (Exception ex){
                         JOptionPane.showMessageDialog(null,ex.getMessage());
@@ -162,9 +162,6 @@ public class RegistrarEvento extends JDialog{
     private void inicializeFields(Evento editarEvento)
     {
         try {
-            Orador orador = oradores.obtenerOradorPorCedula(editarEvento.getIdOrador());
-            Sala sala = salas.obtenerSala(editarEvento.getIdSala());
-
             txtIdEvento_E.setText(editarEvento.getIdEvento());
             txtNombre_E.setText(editarEvento.getNombre());
             txtDescripcion_E.setText(editarEvento.getDescripcion());
@@ -172,10 +169,10 @@ public class RegistrarEvento extends JDialog{
             txtFecha_E.setText(editarEvento.getFecha().toString());
             cbxEstado_E.setSelectedItem(editarEvento.getEstado());
             cbxTipo_E.setSelectedItem(editarEvento.getTipoEvento());
-            cbxIdOrador_E.setSelectedItem(orador.getCedula());
-            txtNombreO_E.setText(orador.getNombre() + ' ' + orador.getApellido());
-            cbxSalas_E.setSelectedItem(sala.getIdSala());
-            txtCapacidad_E.setText(sala.getCapacidad().toString());
+            cbxIdOrador_E.setSelectedItem(editarEvento.getOrador().getCedula());
+            txtNombreO_E.setText(editarEvento.getOrador().getNombre() + ' ' + editarEvento.getOrador().getApellido());
+            cbxSalas_E.setSelectedItem(editarEvento.getSala().getIdSala());
+            txtCapacidad_E.setText(Integer.toString(editarEvento.getSala().getCapacidad()));
         }
         catch (Exception ex){
             JOptionPane.showMessageDialog(null,ex.getMessage());
